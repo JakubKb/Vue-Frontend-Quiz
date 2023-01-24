@@ -1,0 +1,105 @@
+[
+  {
+    "questions": [
+      {
+        "question": "What is OOP?",
+        "answer": "0",
+        "options": [
+          "Object-oriented programming",
+          "Out of place",
+          "Ordinary output process",
+          "Optimized operating performance"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the virtual DOM?",
+        "answer": "1",
+        "options": [
+          "A physical representation of the HTML Document",
+          "An in-memory representation of the actual DOM",
+          "A way to optimize website's performance",
+          "A JavaScript library for handling events"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the difference between server-side rendering and client-side rendering?",
+        "answer": "2",
+        "options": [
+          "Server-side rendering is for backend and client-side rendering is for frontend",
+          "Server-side rendering is faster than client-side rendering",
+          "Server-side rendering renders the pages on the server, while client-side rendering renders the pages in the browser",
+          "Server-side rendering is for static pages and client-side rendering is for dynamic pages"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the purpose of the BEM methodology?",
+        "answer": "3",
+        "options": [
+          "To create responsive designs",
+          "To improve website's SEO",
+          "To simplify the debugging process",
+          "To improve the maintainability and scalability of the code"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the difference between webpack and gulp?",
+        "answer": "0",
+        "options": [
+          "Webpack is a module bundler, while gulp is a task runner",
+          "Webpack is for frontend development, while gulp is for backend development",
+          "Webpack is for React, while gulp is for Angular",
+          "Webpack is a new technology, while gulp is an old one"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the difference between state and props?",
+        "answer": "1",
+        "options": [
+          "State is for components, while props is for elements",
+          "State is for internal component's data, while props is for data passed from the parent component",
+          "State is for handling events, while props is for handling data",
+          "State is for handling data, while props is for handling events"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the difference between Redux and MobX?",
+        "answer": "2",
+        "options": [
+          "Redux is for React, while MobX is for Angular",
+          "Redux is for state management, while MobX is for event management",
+          "Redux uses a centralized store, while MobX uses a decentralized store",
+          "Redux is for managing global state, while MobX is for managing local state"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What are the benefits of using a CSS preprocessor?",
+        "answer": "0",
+        "options": [
+          "It allows for the use of variables, functions, and nesting, which can improve code maintainability and reusability",
+          "It improves website's performance",
+          "It allows for the use of JavaScript in CSS",
+          "It makes the design process faster"
+        ],
+        "selected": null
+      },
+      {
+        "question": "What is the difference between a closure and a scope?",
+        "answer": "1",
+        "options": [
+          "Closure is a function, while scope is a variable",
+          "Closure is a function that has access to variables in its lexical scope, while scope refers to the accessibility or visibility of variables and functions in certain parts of the code",
+          "Closure is a way to create private variables, while scope is a way to create public variables",
+          "Closure is only used in JavaScript, while scope is used in all programming languages"
+        ],
+        "selected": null
+      }
+    ]
+  }
+]
