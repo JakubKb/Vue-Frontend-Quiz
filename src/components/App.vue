@@ -109,12 +109,8 @@ h2 {
 
 button {
   font-family: inherit;
-  padding: 5px 20px;
-  max-width: 100px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-row: 1 / 3;
-  max-width: 120px;
+  padding: 5px 10px;
+  max-width: 250px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -122,7 +118,7 @@ button {
   border: none;
   border-radius: 10px;
   margin-right: 10px;
-  background-color: green;
+  background-color: rgb(10, 145, 255);
   color: white;
   cursor: pointer;
   font-size: 17px;
@@ -135,7 +131,10 @@ button:hover {
 .answers {
   font-family: inherit;
   padding: 10px 20px;
+
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
 }
 </style>
