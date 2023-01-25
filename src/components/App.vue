@@ -1,39 +1,72 @@
 <template>
   <main>
     <div class="container">
-      <h1>Frontend Quiz</h1>
-      <div class="question">{{}}</div>
-      <p>score is {{ score }}</p>
+      <div class="questions">
+        <div class="question-text">
+          <h2 v-if="questions[0]" :key="questions[0].id">
+            {{ questions[0].question }}
+          </h2>
+        </div>
+      </div>
+      <div class="answers">
+        <button v-for="(option, index) in questions[0].options" :key="index">
+          {{ option }}
+        </button>
+      </div>
     </div>
   </main>
 </template>
 
 <script>
-import questions from "./questions.json";
+const questions = [
+  {
+    id: 0,
+    question: "What is OOP?",
+    answer: "0",
+    options: [
+      "Object-oriented programming",
+      "Out of place",
+      "Ordinary output process",
+      "Optimized operating performance",
+    ],
+    selected: null,
+  },
+  {
+    id: 1,
+    question: "What is the virtual DOM?",
+    answer: "1",
+    options: [
+      "A physical representation of the HTML Document",
+      "An in-memory representation of the actual DOM",
+      "A way to optimize website's performance",
+      "A JavaScript library for handling events",
+    ],
+    selected: null,
+  },
+  {
+    id: 2,
+    question:
+      "What is the difference between server-side rendering and client-side rendering?",
+    answer: "2",
+    options: [
+      "Server-side rendering is for backend and client-side rendering is for frontend",
+      "Server-side rendering is faster than client-side rendering",
+      "Server-side rendering renders the pages on the server, while client-side rendering renders the pages in the browser",
+      "Server-side rendering is for static pages and client-side rendering is for dynamic pages",
+    ],
+    selected: null,
+  },
+];
+
 export default {
   data() {
     return {
-      value: 0,
       questions: questions,
-      quizCompleted: false,
-      currentQuestion: 0,
     };
   },
-  methods: {
-    setAnswer(e) {
-      this.questions[this.currentQuestion].selected = e.target.value;
-    },
-  },
-  computed: {
-    score() {
-      let score = 0;
-      this.questions.forEach((q) => {
-        if (q.selected === q.answer) score++;
-      });
-      return score;
-    },
-  },
 };
+
+console.log(questions);
 </script>
 
 <style>
@@ -47,5 +80,6 @@ body {
   min-height: 100vh;
   background-color: #271c36;
   font-family: "montserrat", sans-serif;
+  color: white;
 }
 </style>
