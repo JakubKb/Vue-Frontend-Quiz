@@ -1,11 +1,13 @@
 <template>
   <main>
     <div class="container">
+      <h2>Frontend quiz</h2>
       <div class="questions">
         <div class="question-text">
-          <h2 v-if="questions[0]" :key="questions[0].id">
+          <h1 v-if="questions[0]" :key="questions[0].id">
             {{ questions[0].question }}
-          </h2>
+          </h1>
+          <p>Score: {{ score }}</p>
         </div>
       </div>
       <div class="answers">
@@ -62,6 +64,7 @@ export default {
   data() {
     return {
       questions: questions,
+      score: 0,
     };
   },
 };
@@ -81,5 +84,58 @@ body {
   background-color: #271c36;
   font-family: "montserrat", sans-serif;
   color: white;
+  text-align: center;
+}
+
+.container {
+  background-color: #1c1b1b;
+  max-width: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 100px auto;
+  padding: 10px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+button {
+  font-family: inherit;
+  padding: 5px 20px;
+  max-width: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 1 / 3;
+  max-width: 120px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+button:hover {
+  opacity: 0.7;
+  transition: all ease-in-out 0.3s;
+}
+.answers {
+  font-family: inherit;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
 }
 </style>
