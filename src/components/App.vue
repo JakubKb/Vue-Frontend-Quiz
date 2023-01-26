@@ -4,21 +4,29 @@
       <h2>Frontend quiz</h2>
       <div class="questions">
         <div class="question-text">
-          <h1 v-if="questions[0]" :key="questions[0].id">
-            {{ questions[0].question }}
+          <h1
+            v-if="questions[currentQuestionIndex]"
+            :key="questions[currentQuestionIndex].id"
+          >
+            {{ questions[currentQuestionIndex].question }}
           </h1>
-          <p>Score: {{ score }}</p>
+
+          <p v-bind="score">Score: {{ score }}</p>
         </div>
       </div>
       <div class="answers">
-        <button v-for="(option, index) in questions[0].options" :key="index">
+        <button
+          id="btn"
+          v-for="(option, index) in questions[currentQuestionIndex].options"
+          :key="index"
+          @click="validateAnswer(index)"
+        >
           {{ option }}
         </button>
       </div>
     </div>
   </main>
 </template>
-
 <script>
 const questions = [
   {
@@ -65,11 +73,34 @@ export default {
     return {
       questions: questions,
       score: 0,
+      currentQuestionIndex: 0,
     };
   },
-};
 
-console.log(questions);
+  methods: {
+    validateAnswer(index) {
+      this.questions[this.currentQuestionIndex].selected = index;
+      if (
+        this.questions[this.currentQuestionIndex].selected ==
+        this.questions[this.currentQuestionIndex].answer
+      ) {
+        let button = document.getElementById("btn");
+        button.classList.add("correct");
+        setTimeout(() => {
+          button.classList.remove("correct");
+          this.currentQuestionIndex++;
+        }, 3000);
+      } else {
+        let button = document.getElementById("btn");
+        button.classList.add("incorrect");
+        setTimeout(() => {
+          button.classList.remove("incorrect");
+          this.currentQuestionIndex++;
+        }, 3000);
+      }
+    },
+  },
+};
 </script>
 
 <style>
@@ -137,4 +168,15 @@ button:hover {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
 }
+
+.correct {
+  background-color: rgb(10, 255, 71);
+  color: white;
+}
+
+.incorrect {
+  background-color: rgb(255, 71, 10);
+  color: white;
+}
 </style>
+
