@@ -12,16 +12,18 @@
           </h1>
 
           <p v-bind="score">Score: {{ score }}</p>
+          <p>correct: {{ questions[currentQuestionIndex].answer }}</p>
         </div>
       </div>
       <div class="answers">
         <button
+          :ref="'button' + index"
           id="btn"
           v-for="(option, index) in questions[currentQuestionIndex].options"
           :key="index"
           @click="validateAnswer(index)"
         >
-          {{ option }}
+          {{ option }} index: {{ index }}
         </button>
       </div>
     </div>
@@ -79,20 +81,16 @@ export default {
 
   methods: {
     validateAnswer(index) {
-      this.questions[this.currentQuestionIndex].selected = index;
-      if (
-        this.questions[this.currentQuestionIndex].selected ==
-        this.questions[this.currentQuestionIndex].answer
-      ) {
+      if (index == this.questions[this.currentQuestionIndex].answer) {
+        this.$refs["button" + index][0].classList.add("correct");
         let button = document.getElementById("btn");
-        button.classList.add("correct");
         setTimeout(() => {
           button.classList.remove("correct");
           this.currentQuestionIndex++;
         }, 3000);
       } else {
         let button = document.getElementById("btn");
-        button.classList.add("incorrect");
+        this.$refs["button" + index][0].classList.add("incorrect");
         setTimeout(() => {
           button.classList.remove("incorrect");
           this.currentQuestionIndex++;
