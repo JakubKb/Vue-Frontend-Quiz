@@ -11,7 +11,7 @@
             {{ questions[currentQuestionIndex].question }}
           </h1>
 
-          <p v-bind="score">Score: {{ score }}</p>
+          <p>Score: {{ score }}</p>
           <p>correct: {{ questions[currentQuestionIndex].answer }}</p>
         </div>
       </div>
@@ -86,12 +86,14 @@ export default {
 
   methods: {
     validateAnswer(index) {
+      console.log(index);
       let buttons = document.querySelectorAll(".answer-btn");
       buttons.forEach((button) => {
         button.classList.remove("incorrect");
       });
 
       if (index == this.questions[this.currentQuestionIndex].answer) {
+        this.score++;
         this.$refs["button" + index][0].classList.add("correct");
         setTimeout(() => {
           buttons.forEach((button) => {
@@ -201,3 +203,4 @@ button:hover {
   color: white;
 }
 </style>
+
