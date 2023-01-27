@@ -12,7 +12,6 @@
           </h1>
 
           <p>Score: {{ score }}</p>
-          <p>correct: {{ questions[currentQuestionIndex].answer }}</p>
         </div>
       </div>
       <div class="answers">
@@ -23,7 +22,7 @@
           :key="index"
           @click="validateAnswer(index)"
         >
-          {{ option }} index: {{ index }}
+          {{ option }}
         </button>
       </div>
     </div>
@@ -32,6 +31,16 @@
       <div class="completed-text">
         <p>Your score is {{ score }} out of {{ questions.length }}</p>
       </div>
+      <button class="reset" @click="reset">Reset Quiz</button>
+    </div>
+    <div class="preQuiz" id="preQuiz">
+      <h2>Frontend Quiz!</h2>
+      <p>In this quiz you'll be answering 3 frontend questions!</p>
+      <br />
+      <p>This is the 3 question beta! still in development</p>
+      <br />
+      <a href="https://github.com/JustKooba/Vue-Frontend-Quiz">Github Repo</a>
+      <button class="startQ" @click="startQuiz">Start Quiz!</button>
     </div>
   </main>
 </template>
@@ -114,9 +123,19 @@ export default {
         setTimeout(() => {
           console.clear();
           document.getElementById("container").style.display = "none";
-          document.getElementById("completed").style.display = "block";
+          document.getElementById("completed").style.display = "flex";
         }, 3000);
       }
+    },
+    reset() {
+      this.score = 0;
+      this.currentQuestionIndex = 0;
+      document.getElementById("container").style.display = "flex";
+      document.getElementById("completed").style.display = "none";
+    },
+    startQuiz() {
+      document.getElementById("preQuiz").style.display = "none";
+      document.getElementById("container").style.display = "flex";
     },
   },
 };
@@ -138,10 +157,10 @@ body {
 }
 
 .container,
-#completed {
+#completed,
+.preQuiz {
   background-color: #1c1b1b;
   max-width: 550px;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -150,8 +169,26 @@ body {
   padding: 10px;
 }
 
+.preQuiz {
+  display: flex;
+}
+
+.preQuiz a {
+  margin-bottom: 10px;
+}
+
+.container {
+  display: none;
+}
+
+#completed button {
+  margin-top: 10px;
+}
+
 #completed {
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -203,4 +240,5 @@ button:hover {
   color: white;
 }
 </style>
+
 
