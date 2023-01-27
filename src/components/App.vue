@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <div class="container">
+   <main>
+    <div class="container" id="container">
       <h2>Frontend quiz</h2>
       <div class="questions">
         <div class="question-text">
@@ -18,13 +18,19 @@
       <div class="answers">
         <button
           :ref="'button' + index"
-          id="btn"
+          class="answer-btn"
           v-for="(option, index) in questions[currentQuestionIndex].options"
           :key="index"
           @click="validateAnswer(index)"
         >
           {{ option }} index: {{ index }}
         </button>
+      </div>
+    </div>
+    <div class="completed" id="completed">
+      <h2>Quiz Completed!</h2>
+      <div class="completed-text">
+        <p>Your score is {{ score }} out of {{ questions.length }}</p>
       </div>
     </div>
   </main>
@@ -69,7 +75,6 @@ const questions = [
     selected: null,
   },
 ];
-
 export default {
   data() {
     return {
@@ -81,20 +86,32 @@ export default {
 
   methods: {
     validateAnswer(index) {
+      let buttons = document.querySelectorAll(".answer-btn");
+      buttons.forEach((button) => {
+        button.classList.remove("incorrect");
+      });
+
       if (index == this.questions[this.currentQuestionIndex].answer) {
         this.$refs["button" + index][0].classList.add("correct");
-        let button = document.getElementById("btn");
         setTimeout(() => {
-          button.classList.remove("correct");
+          buttons.forEach((button) => {
+            button.classList.remove("correct");
+          });
           this.currentQuestionIndex++;
         }, 3000);
       } else {
-        let button = document.getElementById("btn");
         this.$refs["button" + index][0].classList.add("incorrect");
         setTimeout(() => {
-          button.classList.remove("incorrect");
+          buttons.forEach((button) => {
+            button.classList.remove("incorrect");
+          });
           this.currentQuestionIndex++;
         }, 3000);
+      }
+      if (this.currentQuestionIndex === 2) {
+        console.log("Quiz completed!");
+        document.getElementById("container").style.display = "none";
+        document.getElementById("completed").style.display = "block";
       }
     },
   },
@@ -116,7 +133,8 @@ body {
   text-align: center;
 }
 
-.container {
+.container,
+#completed {
   background-color: #1c1b1b;
   max-width: 550px;
   display: flex;
@@ -126,6 +144,10 @@ body {
   text-align: center;
   margin: 100px auto;
   padding: 10px;
+}
+
+#completed {
+  display: none;
 }
 
 h1 {
@@ -177,4 +199,5 @@ button:hover {
   color: white;
 }
 </style>
+
 
