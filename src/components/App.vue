@@ -122,20 +122,27 @@ export default {
       if (this.currentQuestionIndex === 2) {
         setTimeout(() => {
           console.clear();
-          document.getElementById("container").style.display = "none";
-          document.getElementById("completed").style.display = "flex";
+          let container = document.getElementById("container");
+          container.style.display = "none";
+          let completed = document.getElementById("completed");
+          completed.style.display = "flex";
         }, 3000);
       }
     },
     reset() {
       this.score = 0;
       this.currentQuestionIndex = 0;
-      document.getElementById("container").style.display = "flex";
-      document.getElementById("completed").style.display = "none";
+      let completed = document.getElementById("completed");
+      completed.style.display = "none";
+
+      let container = document.getElementById("container");
+      container.style.display = "flex";
     },
     startQuiz() {
-      document.getElementById("preQuiz").style.display = "none";
-      document.getElementById("container").style.display = "flex";
+      let preQuiz = document.getElementById("preQuiz");
+      preQuiz.style.display = "none";
+      let container = document.getElementById("container");
+      container.style.display = "flex";
     },
   },
 };
