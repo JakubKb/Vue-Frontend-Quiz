@@ -1,5 +1,5 @@
 <template>
-   <main>
+  <main>
     <div class="container" id="container">
       <h2>Frontend quiz</h2>
       <div class="questions">
@@ -109,9 +109,11 @@ export default {
         }, 3000);
       }
       if (this.currentQuestionIndex === 2) {
-        console.log("Quiz completed!");
-        document.getElementById("container").style.display = "none";
-        document.getElementById("completed").style.display = "block";
+        setTimeout(() => {
+          console.clear();
+          document.getElementById("container").style.display = "none";
+          document.getElementById("completed").style.display = "block";
+        }, 3000);
       }
     },
   },
@@ -199,5 +201,3 @@ button:hover {
   color: white;
 }
 </style>
-
-
