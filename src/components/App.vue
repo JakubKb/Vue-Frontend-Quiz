@@ -1,6 +1,10 @@
 <template>
   <main>
-    <div class="container" id="container">
+    <div
+      class="container"
+      id="container"
+      :style="{ display: displayContainer }"
+    >
       <h2>Frontend quiz</h2>
       <div class="questions">
         <div class="question-text">
@@ -18,7 +22,10 @@
         <button
           :ref="'button' + index"
           class="answer-btn"
-          v-for="(option, index) in questions[currentQuestionIndex].options"
+          :disabled="buttonsDisabled"
+          v-for="(option, index) in (
+            questions[currentQuestionIndex] || { options: [] }
+          ).options"
           :key="index"
           @click="validateAnswer(index)"
         >
@@ -26,14 +33,18 @@
         </button>
       </div>
     </div>
-    <div class="completed" id="completed">
+    <div
+      class="completed"
+      id="completed"
+      :style="{ display: displayCompleted }"
+    >
       <h2>Quiz Completed!</h2>
       <div class="completed-text">
         <p>Your score is {{ score }} out of {{ questions.length }}</p>
       </div>
       <button class="reset" @click="reset">Reset Quiz</button>
     </div>
-    <div class="preQuiz" id="preQuiz">
+    <div class="preQuiz" id="preQuiz" :style="{ display: displayPreQ }">
       <h2>Frontend Quiz!</h2>
       <p>In this quiz you'll be answering 3 frontend questions!</p>
       <br />
@@ -90,17 +101,21 @@ export default {
       questions: questions,
       score: 0,
       currentQuestionIndex: 0,
+      displayContainer: "none",
+      displayPreQ: "flex",
+      displayCompleted: "none",
+      buttonsDisabled: false,
     };
   },
-
   methods: {
     validateAnswer(index) {
+      this.buttonsDisabled = true;
+
       console.log(index);
       let buttons = document.querySelectorAll(".answer-btn");
       buttons.forEach((button) => {
         button.classList.remove("incorrect");
       });
-
       if (index == this.questions[this.currentQuestionIndex].answer) {
         this.score++;
         this.$refs["button" + index][0].classList.add("correct");
@@ -121,11 +136,10 @@ export default {
       }
       if (this.currentQuestionIndex === 2) {
         setTimeout(() => {
-          console.clear();
-          let container = document.getElementById("container");
-          container.style.display = "none";
-          let completed = document.getElementById("completed");
-          completed.style.display = "flex";
+          this.$nextTick(() => {
+            this.displayContainer = "none";
+            this.displayCompleted = "flex";
+          });
         }, 3000);
       }
     },
@@ -134,15 +148,12 @@ export default {
       this.currentQuestionIndex = 0;
       let completed = document.getElementById("completed");
       completed.style.display = "none";
-
       let container = document.getElementById("container");
       container.style.display = "flex";
     },
     startQuiz() {
-      let preQuiz = document.getElementById("preQuiz");
-      preQuiz.style.display = "none";
-      let container = document.getElementById("container");
-      container.style.display = "flex";
+      this.displayContainer = "flex";
+      this.displayPreQ = "none";
     },
   },
 };
@@ -154,7 +165,6 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   min-height: 100vh;
   background-color: #271c36;
@@ -162,7 +172,6 @@ body {
   color: white;
   text-align: center;
 }
-
 .container,
 #completed,
 .preQuiz {
@@ -175,37 +184,29 @@ body {
   margin: 100px auto;
   padding: 10px;
 }
-
 .preQuiz {
   display: flex;
 }
-
 .preQuiz a {
   margin-bottom: 10px;
 }
-
 .container {
   display: none;
 }
-
 #completed button {
   margin-top: 10px;
 }
-
 #completed {
   display: none;
   justify-content: center;
   align-items: center;
 }
-
 h1 {
   margin-bottom: 10px;
 }
-
 h2 {
   margin-bottom: 10px;
 }
-
 button {
   font-family: inherit;
   padding: 5px 10px;
@@ -222,7 +223,6 @@ button {
   cursor: pointer;
   font-size: 17px;
 }
-
 button:hover {
   opacity: 0.7;
   transition: all ease-in-out 0.3s;
@@ -230,22 +230,20 @@ button:hover {
 .answers {
   font-family: inherit;
   padding: 10px 20px;
-
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
 }
-
 .correct {
   background-color: rgb(10, 255, 71);
   color: white;
 }
-
 .incorrect {
   background-color: rgb(255, 71, 10);
   color: white;
 }
 </style>
+
 
 
