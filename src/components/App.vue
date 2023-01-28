@@ -110,7 +110,6 @@ export default {
   methods: {
     validateAnswer(index) {
       this.buttonsDisabled = true;
-
       console.log(index);
       let buttons = document.querySelectorAll(".answer-btn");
       buttons.forEach((button) => {
@@ -124,6 +123,7 @@ export default {
             button.classList.remove("correct");
           });
           this.currentQuestionIndex++;
+          this.buttonsDisabled = false;
         }, 3000);
       } else {
         this.$refs["button" + index][0].classList.add("incorrect");
@@ -132,6 +132,7 @@ export default {
             button.classList.remove("incorrect");
           });
           this.currentQuestionIndex++;
+          this.buttonsDisabled = false;
         }, 3000);
       }
       if (this.currentQuestionIndex === 2) {
@@ -244,6 +245,7 @@ button:hover {
   color: white;
 }
 </style>
+
 
 
 
