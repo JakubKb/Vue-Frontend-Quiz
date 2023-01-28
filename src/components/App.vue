@@ -140,6 +140,7 @@ export default {
           this.$nextTick(() => {
             this.displayContainer = "none";
             this.displayCompleted = "flex";
+            this.buttonsDisabled = false;
           });
         }, 3000);
       }
@@ -147,10 +148,8 @@ export default {
     reset() {
       this.score = 0;
       this.currentQuestionIndex = 0;
-      let completed = document.getElementById("completed");
-      completed.style.display = "none";
-      let container = document.getElementById("container");
-      container.style.display = "flex";
+      this.displayContainer = "flex";
+      this.displayCompleted = "none";
     },
     startQuiz() {
       this.displayContainer = "flex";
@@ -245,7 +244,6 @@ button:hover {
   color: white;
 }
 </style>
-
 
 
 
