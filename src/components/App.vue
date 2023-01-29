@@ -48,8 +48,6 @@
       <h2>Frontend Quiz!</h2>
       <p>In this quiz you'll be answering frontend questions!</p>
       <br />
-      <p>This is a beta version. still in development</p>
-      <br />
       <a href="https://github.com/JustKooba/Vue-Frontend-Quiz">Github Repo</a>
       <p>How many questions?</p> <br />
       <button class="startQ" @click="startQuiz">3</button>
