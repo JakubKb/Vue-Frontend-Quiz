@@ -40,7 +40,7 @@
     >
       <h2>Quiz Completed!</h2>
       <div class="completed-text">
-        <p>Your score is {{ score }} out of {{ maxQuestionIndex }}</p>
+        <p>Your score is {{ score }} out of {{ maxQuestionIndex + 1 }}</p>
       </div>
       <button class="reset" @click="reset">Reset Quiz</button>
     </div>
@@ -51,6 +51,7 @@
       <p>This is a beta version. still in development</p>
       <br />
       <a href="https://github.com/JustKooba/Vue-Frontend-Quiz">Github Repo</a>
+      <p>How many questions?</p>
       <button class="startQ" @click="startQuiz">3</button>
       <button class="startQ" @click="startQuiz">5</button>
       <button class="startQ" @click="startQuiz">10</button>
@@ -211,7 +212,7 @@ export default {
           this.buttonsDisabled = false;
         }, 3000);
       }
-      if (this.currentQuestionIndex === 2) {
+      if (this.currentQuestionIndex === this.maxQuestionIndex) {
         setTimeout(() => {
           this.$nextTick(() => {
             this.displayContainer = "none";
@@ -342,6 +343,5 @@ button:hover {
   color: white;
 }
 </style>
-
 
 
