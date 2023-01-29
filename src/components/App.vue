@@ -51,7 +51,7 @@
       <p>This is a beta version. still in development</p>
       <br />
       <a href="https://github.com/JustKooba/Vue-Frontend-Quiz">Github Repo</a>
-      <p>How many questions?</p>
+      <p>How many questions?</p> <br />
       <button class="startQ" @click="startQuiz">3</button>
       <button class="startQ" @click="startQuiz">5</button>
       <button class="startQ" @click="startQuiz">10</button>
