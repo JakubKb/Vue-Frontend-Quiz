@@ -40,7 +40,7 @@
     >
       <h2>Quiz Completed!</h2>
       <div class="completed-text">
-        <p>Your score is {{ score }} out of {{ questions.length }}</p>
+        <p>Your score is {{ score }} out of {{ maxQuestionIndex }}</p>
       </div>
       <button class="reset" @click="reset">Reset Quiz</button>
     </div>
@@ -62,12 +62,12 @@ const questions = [
   {
     id: 0,
     question: "What is OOP?",
-    answer: "0",
+    answer: "3",
     options: [
-      "Object-oriented programming",
       "Out of place",
       "Ordinary output process",
       "Optimized operating performance",
+      "Object-oriented programming",
     ],
     selected: null,
   },
@@ -87,11 +87,11 @@ const questions = [
     id: 2,
     question:
       "What is the difference between server-side rendering and client-side rendering?",
-    answer: "2",
+    answer: "0",
     options: [
+      "Server-side rendering renders the pages on the server, while client-side rendering renders the pages in the browser",
       "Server-side rendering is for backend and client-side rendering is for frontend",
       "Server-side rendering is faster than client-side rendering",
-      "Server-side rendering renders the pages on the server, while client-side rendering renders the pages in the browser",
       "Server-side rendering is for static pages and client-side rendering is for dynamic pages",
     ],
     selected: null,
@@ -123,11 +123,11 @@ const questions = [
   {
     id: 5,
     question: "What is the difference between state and props?",
-    answer: "1",
+    answer: "2",
     options: [
       "State is for components, while props is for elements",
-      "State is for internal component's data, while props is for data passed from the parent component",
       "State is for handling events, while props is for handling data",
+      "State is for internal component's data, while props is for data passed from the parent component",
       "State is for handling data, while props is for handling events",
     ],
     selected: null,
@@ -159,19 +159,17 @@ const questions = [
   {
     id: 8,
     question: "What is the difference between a closure and a scope?",
-    answer: "1",
+    answer: "0",
     options: [
-      "Closure is a function, while scope is a variable",
       "Closure is a function that has access to variables in its lexical scope, while scope refers to the accessibility or visibility of variables and functions in certain parts of the code",
+      "Closure is a function, while scope is a variable",
       "Closure is a way to create private variables, while scope is a way to create public variables",
       "Closure is only used in JavaScript, while scope is used in all programming languages",
     ],
     selected: null,
   },
 ];
-questions.forEach((question) => {
-  question.options.sort(() => Math.random() - 0.5);
-});
+
 export default {
   data() {
     return {
@@ -193,7 +191,6 @@ export default {
       buttons.forEach((button) => {
         button.classList.remove("incorrect");
       });
-
       if (index == this.questions[this.currentQuestionIndex].answer) {
         this.score++;
         this.$refs["button" + index][0].classList.add("correct");
@@ -214,7 +211,7 @@ export default {
           this.buttonsDisabled = false;
         }, 3000);
       }
-      if (this.currentQuestionIndex === this.maxQuestionIndex) {
+      if (this.currentQuestionIndex === 2) {
         setTimeout(() => {
           this.$nextTick(() => {
             this.displayContainer = "none";
