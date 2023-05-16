@@ -1,2 +1,2 @@
-Frontend quiz made in vue.
+Simple frontend quiz made in vue.
 
